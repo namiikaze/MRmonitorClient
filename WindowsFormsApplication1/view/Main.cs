@@ -39,11 +39,11 @@ namespace WindowsFormsApplication1
         {
             
             socket = IO.Socket(txtIP.Text);
-            socket.Emit("join", "matheus");
+            
 
             socket.On(Quobject.SocketIoClientDotNet.Client.Socket.EVENT_CONNECT, () =>
             {
-                socket.Emit("private", "teste", "hue");
+                socket.Emit("entrar", "matheus");
             });
 
             string conteudo = "";
@@ -60,9 +60,8 @@ namespace WindowsFormsApplication1
         }
         private void button1_Click(object sender, EventArgs e)
         {
+            socket.Emit("entrar", "matheus");
             
-            
-           // socket.Emit("private", "teste", "testando");
             //armazena a imagem no bitmap
             Bitmap b = new Bitmap(TelaLargura, TelaAltura);
             //copia  a tela no bitmap
