@@ -1,11 +1,7 @@
-﻿namespace WindowsFormsApplication1
+﻿namespace MRmonitorClient.view
 {
     partial class Main
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -26,88 +22,90 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
+        public void InitializeComponent()
         {
-            this.btnConectar = new System.Windows.Forms.Button();
-            this.btnDesconectar = new System.Windows.Forms.Button();
+            this.components = new System.ComponentModel.Container();
+            this.btnTeste = new System.Windows.Forms.Button();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.lblSvStatus = new System.Windows.Forms.Label();
             this.rtbLog = new System.Windows.Forms.RichTextBox();
-            this.txtIP = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.picTela = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.picTela)).BeginInit();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.txtUsuario = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // btnConectar
+            // btnTeste
             // 
-            this.btnConectar.Location = new System.Drawing.Point(457, 24);
-            this.btnConectar.Name = "btnConectar";
-            this.btnConectar.Size = new System.Drawing.Size(86, 23);
-            this.btnConectar.TabIndex = 0;
-            this.btnConectar.Text = "Conectar";
-            this.btnConectar.UseVisualStyleBackColor = true;
-            this.btnConectar.Click += new System.EventHandler(this.btnConectar_Click);
+            this.btnTeste.Location = new System.Drawing.Point(419, 12);
+            this.btnTeste.Name = "btnTeste";
+            this.btnTeste.Size = new System.Drawing.Size(299, 23);
+            this.btnTeste.TabIndex = 0;
+            this.btnTeste.Text = "button1";
+            this.btnTeste.UseVisualStyleBackColor = true;
+            this.btnTeste.Click += new System.EventHandler(this.btnTeste_Click);
             // 
-            // btnDesconectar
+            // statusStrip1
             // 
-            this.btnDesconectar.Location = new System.Drawing.Point(457, 53);
-            this.btnDesconectar.Name = "btnDesconectar";
-            this.btnDesconectar.Size = new System.Drawing.Size(86, 23);
-            this.btnDesconectar.TabIndex = 1;
-            this.btnDesconectar.Text = "Desconectar";
-            this.btnDesconectar.UseVisualStyleBackColor = true;
-            this.btnDesconectar.Click += new System.EventHandler(this.btnDesconectar_Click);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 406);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(730, 22);
+            this.statusStrip1.TabIndex = 1;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // lblSvStatus
+            // 
+            this.lblSvStatus.AutoSize = true;
+            this.lblSvStatus.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblSvStatus.Location = new System.Drawing.Point(3, 411);
+            this.lblSvStatus.Name = "lblSvStatus";
+            this.lblSvStatus.Size = new System.Drawing.Size(40, 13);
+            this.lblSvStatus.TabIndex = 2;
+            this.lblSvStatus.Text = "Status:";
             // 
             // rtbLog
             // 
-            this.rtbLog.Location = new System.Drawing.Point(12, 58);
+            this.rtbLog.Location = new System.Drawing.Point(13, 52);
             this.rtbLog.Name = "rtbLog";
-            this.rtbLog.Size = new System.Drawing.Size(347, 208);
-            this.rtbLog.TabIndex = 2;
+            this.rtbLog.Size = new System.Drawing.Size(705, 351);
+            this.rtbLog.TabIndex = 3;
             this.rtbLog.Text = "";
             // 
-            // txtIP
+            // timer1
             // 
-            this.txtIP.Location = new System.Drawing.Point(13, 24);
-            this.txtIP.Name = "txtIP";
-            this.txtIP.Size = new System.Drawing.Size(438, 20);
-            this.txtIP.TabIndex = 3;
-            this.txtIP.Text = "http://localhost:3000";
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // button1
+            // txtUsuario
             // 
-            this.button1.Location = new System.Drawing.Point(469, 103);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.txtUsuario.Location = new System.Drawing.Point(64, 14);
+            this.txtUsuario.Name = "txtUsuario";
+            this.txtUsuario.Size = new System.Drawing.Size(159, 20);
+            this.txtUsuario.TabIndex = 4;
             // 
-            // picTela
+            // label1
             // 
-            this.picTela.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picTela.Location = new System.Drawing.Point(385, 160);
-            this.picTela.Name = "picTela";
-            this.picTela.Size = new System.Drawing.Size(453, 246);
-            this.picTela.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picTela.TabIndex = 5;
-            this.picTela.TabStop = false;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 17);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(46, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Usuario:";
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(850, 418);
-            this.Controls.Add(this.picTela);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.txtIP);
+            this.ClientSize = new System.Drawing.Size(730, 428);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.rtbLog);
-            this.Controls.Add(this.btnDesconectar);
-            this.Controls.Add(this.btnConectar);
+            this.Controls.Add(this.lblSvStatus);
+            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.btnTeste);
             this.Name = "Main";
             this.Text = "Main";
-            this.Load += new System.EventHandler(this.Form2_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.picTela)).EndInit();
+            this.Load += new System.EventHandler(this.Main_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -115,11 +113,13 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnConectar;
-        private System.Windows.Forms.Button btnDesconectar;
+        public System.Windows.Forms.Button btnTeste;
+        public System.Windows.Forms.StatusStrip statusStrip1;
+        public System.Windows.Forms.Label lblSvStatus;
         private System.Windows.Forms.RichTextBox rtbLog;
-        private System.Windows.Forms.TextBox txtIP;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.PictureBox picTela;
+        private System.Windows.Forms.Timer timer1;
+        private System.ComponentModel.IContainer components;
+        private System.Windows.Forms.TextBox txtUsuario;
+        private System.Windows.Forms.Label label1;
     }
 }

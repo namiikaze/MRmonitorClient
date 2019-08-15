@@ -1,10 +1,11 @@
-﻿using System;
+﻿using MRmonitorClient.view;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1
+namespace MRmonitorClient
 {
     static class Program
     {
