@@ -39,7 +39,7 @@ namespace MRmonitorClient.view
             rtbLog.Text += machine.PegarJanelaAberta() + "\n";
 
             Main form = this;
-            socket.ConexaoSocket("http://localhost:3000", form).ToString();
+            socket.ConexaoSocket("http://192.168.0.16:3000", form).ToString();
 
         }
 
