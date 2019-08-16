@@ -32,13 +32,14 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnTeste
             // 
-            this.btnTeste.Location = new System.Drawing.Point(419, 12);
+            this.btnTeste.Location = new System.Drawing.Point(603, 12);
             this.btnTeste.Name = "btnTeste";
-            this.btnTeste.Size = new System.Drawing.Size(299, 23);
+            this.btnTeste.Size = new System.Drawing.Size(115, 23);
             this.btnTeste.TabIndex = 0;
             this.btnTeste.Text = "button1";
             this.btnTeste.UseVisualStyleBackColor = true;
@@ -82,6 +83,7 @@
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(159, 20);
             this.txtUsuario.TabIndex = 4;
+            this.txtUsuario.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtUsuario_KeyUp);
             // 
             // label1
             // 
@@ -92,11 +94,22 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Usuario:";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(468, 11);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(730, 428);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.rtbLog);
@@ -121,5 +134,6 @@
         private System.ComponentModel.IContainer components;
         private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
     }
 }

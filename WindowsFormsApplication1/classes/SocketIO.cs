@@ -17,6 +17,8 @@ namespace MRmonitorClient.classes
     class SocketIO
     {
         InfoMachine machine = new InfoMachine();
+        ObjectThread objThread = new ObjectThread();
+
         private static Quobject.SocketIoClientDotNet.Client.Socket socket;
         
         public bool ConexaoSocket(string url, Main form)
@@ -30,9 +32,10 @@ namespace MRmonitorClient.classes
             
             socket.On(Quobject.SocketIoClientDotNet.Client.Socket.EVENT_CONNECT, () =>
             {
-                SetControlPropertyValue(form.lblSvStatus, "text", "Server Status: Conectado!");   
-                SetControlPropertyValue(form.lblSvStatus, "ForeColor", Color.Green);
-                socket.Emit("entrar", "matheus");
+            
+                objThread.SetControlPropertyValue(form.lblSvStatus, "text", "Server Status: Conectado!");
+                objThread.SetControlPropertyValue(form.lblSvStatus, "ForeColor", Color.Green);
+                socket.Emit("entrar", "client");
 
                 string infoPC = "{ \"IP\": \"" + machine.PegarIP() +"\", "
                 +" \"Usuario\": \"" + machine.PegarNomeUsuarioPC() +"\", "
@@ -41,21 +44,23 @@ namespace MRmonitorClient.classes
             });
 
             socket.On(Quobject.SocketIoClientDotNet.Client.Socket.EVENT_DISCONNECT, () =>
-            {                
-                SetControlPropertyValue(form.lblSvStatus, "text", "Server Status: Desconectado!");
-                SetControlPropertyValue(form.lblSvStatus, "ForeColor", Color.Red);   
+            {
+                objThread.SetControlPropertyValue(form.lblSvStatus, "text", "Server Status: Desconectado!");
+                objThread.SetControlPropertyValue(form.lblSvStatus, "ForeColor", Color.Red);   
             });
 
             string conteudo = "";
             socket.On("update", (data) =>
             {
-
                 conteudo += data.ToString() + "\n";
                 form.SvStatus(conteudo);
-                SetControlPropertyValue(form.btnTeste, "text", conteudo);
-                
-                
+                objThread.SetControlPropertyValue(form.btnTeste, "text", conteudo);
 
+            });
+
+            socket.On("obterPrint", (data) =>
+            {
+                EnviarPrint();
             });
             
             
@@ -86,42 +91,6 @@ namespace MRmonitorClient.classes
 
      
 
-        /*          Acesso a thread*/
-        delegate void SetControlValueCallback(Control oControl, string propName, object propValue);
-
-        private void SetControlPropertyValue(Control oControl, string propName, object propValue)
-        {
-
-            if (oControl.InvokeRequired)
-            {
-
-                SetControlValueCallback d = new SetControlValueCallback(SetControlPropertyValue);
-
-                oControl.Invoke(d, new object[] { oControl, propName, propValue });
-
-            }
-
-            else
-            {
-
-                Type t = oControl.GetType();
-
-                PropertyInfo[] props = t.GetProperties();
-
-                foreach (PropertyInfo p in props)
-                {
-
-                    if (p.Name.ToUpper() == propName.ToUpper())
-                    {
-
-                        p.SetValue(oControl, propValue, null);
-
-                    }
-
-                }
-
-            }
-        }
     }
 
 

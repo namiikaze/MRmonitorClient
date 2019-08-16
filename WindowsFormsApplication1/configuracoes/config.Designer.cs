@@ -13,13 +13,25 @@ namespace MRmonitorClient.configuracoes {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0")]
-    internal sealed partial class config : global::System.Configuration.ApplicationSettingsBase {
+    internal sealed partial class Config : global::System.Configuration.ApplicationSettingsBase {
         
-        private static config defaultInstance = ((config)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new config())));
+        private static Config defaultInstance = ((Config)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Config())));
         
-        public static config Default {
+        public static Config Default {
             get {
                 return defaultInstance;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("testeee")]
+        public string nome {
+            get {
+                return ((string)(this["nome"]));
+            }
+            set {
+                this["nome"] = value;
             }
         }
     }

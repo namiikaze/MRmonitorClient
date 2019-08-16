@@ -74,11 +74,12 @@
   <ItemGroup>
     <Compile Include="classes\ImageConvert.cs" />
     <Compile Include="classes\InfoMachine.cs" />
+    <Compile Include="classes\ObjectThread.cs" />
     <Compile Include="classes\SocketIO.cs" />
-    <Compile Include="configuracoes\config.Designer.cs">
+    <Compile Include="configuracoes\Config.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>config.settings</DependentUpon>
+      <DependentUpon>Config.settings</DependentUpon>
     </Compile>
     <Compile Include="view\exemple.cs">
       <SubType>Form</SubType>
@@ -110,9 +111,10 @@
     <EmbeddedResource Include="view\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="configuracoes\config.settings">
+    <None Include="app.config" />
+    <None Include="configuracoes\Config.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>config.Designer.cs</LastGenOutput>
+      <LastGenOutput>Config.Designer.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

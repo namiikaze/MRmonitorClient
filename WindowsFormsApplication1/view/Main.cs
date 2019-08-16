@@ -1,4 +1,5 @@
 ﻿using MRmonitorClient.classes;
+using MRmonitorClient.configuracoes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,7 @@ namespace MRmonitorClient.view
     {
         SocketIO socket = new SocketIO();
         InfoMachine machine = new InfoMachine();
+        Config conf = new Config();// configfile
         public Main()
         {
             InitializeComponent();
@@ -24,14 +26,20 @@ namespace MRmonitorClient.view
 
         private void Main_Load(object sender, EventArgs e)
         {
-            Main teste = this;
             
-            socket.ConexaoSocket("http://localhost:3000", teste).ToString();
+            txtUsuario.Text = conf.nome;
+            
+            
+            
+            
 
             
 
             //rtbLog.Text += machine.PegarIP() + "\n";
             rtbLog.Text += machine.PegarJanelaAberta() + "\n";
+
+            Main form = this;
+            socket.ConexaoSocket("http://localhost:3000", form).ToString();
 
         }
 
@@ -53,8 +61,17 @@ namespace MRmonitorClient.view
         private void timer1_Tick(object sender, EventArgs e)
         {
             
+        }
 
-            
+        private void txtUsuario_KeyUp(object sender, KeyEventArgs e)
+        {
+            conf.nome = txtUsuario.Text;
+            conf.Save();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        { 
+            socket.EnviarPrint();
         }
     }
 }
