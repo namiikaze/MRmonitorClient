@@ -129,7 +129,7 @@
         public System.Windows.Forms.Button btnTeste;
         public System.Windows.Forms.StatusStrip statusStrip1;
         public System.Windows.Forms.Label lblSvStatus;
-        private System.Windows.Forms.RichTextBox rtbLog;
+        public System.Windows.Forms.RichTextBox rtbLog;
         private System.Windows.Forms.Timer timer1;
         private System.ComponentModel.IContainer components;
         private System.Windows.Forms.TextBox txtUsuario;
