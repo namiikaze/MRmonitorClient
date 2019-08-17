@@ -9,14 +9,14 @@ using System.Windows.Forms;
 
 namespace MRmonitorClient.classes
 {
-    class InfoMachine
-    {
+    class InfoMachine{
+        #region
         [DllImport("user32.dll")]
         static extern IntPtr GetForegroundWindow();
 
         [DllImport("user32.dll")]
         static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
-
+        #endregion  //DLL
         public string PegarIP()
         {
             String strHostName = String.Empty;
@@ -24,7 +24,6 @@ namespace MRmonitorClient.classes
             IPAddress[] addr = ipEntry.AddressList;
             return addr[0].ToString();
         }
-
         public string PegarJanelaAberta()
         {
             const int nChars = 256;
@@ -38,7 +37,6 @@ namespace MRmonitorClient.classes
             }
             return null;
         }
-
         public string PegarNomeUsuarioPC()
         {
             return SystemInformation.UserName;            
@@ -47,8 +45,6 @@ namespace MRmonitorClient.classes
         {
             return Dns.GetHostName();   
         }
-
-   
 
     }
 }

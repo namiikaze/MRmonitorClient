@@ -28,16 +28,8 @@ namespace MRmonitorClient.view
         {
             
             txtUsuario.Text = conf.nome;
-            
-            
-            
-            
 
             
-
-            //rtbLog.Text += machine.PegarIP() + "\n";
-            rtbLog.Text += machine.PegarJanelaAberta() + "\n";
-
             Main form = this;
             socket.ConexaoSocket("http://192.168.0.16:3000", form).ToString();
 
@@ -45,22 +37,21 @@ namespace MRmonitorClient.view
 
         private void btnTeste_Click(object sender, EventArgs e)
         {
-            
                 socket.Desconectar();
-                    
-            
-            
-            
         }
         public void SvStatus(string status)
         {
         
-            
         }
-
+        string ultimaAtividade = "";
         private void timer1_Tick(object sender, EventArgs e)
         {
-            
+            string atual = machine.PegarJanelaAberta();
+            if (ultimaAtividade != atual)
+            {
+                ultimaAtividade = atual;
+                socket.EnviarAtividade(ultimaAtividade);  
+            }
         }
 
         private void txtUsuario_KeyUp(object sender, KeyEventArgs e)

@@ -10,6 +10,7 @@ using System.Reflection;
 using MRmonitorClient.view;
 using System.Drawing;
 using System.IO;
+using MRmonitorClient.configuracoes;
 
 namespace MRmonitorClient.classes
 {
@@ -17,6 +18,8 @@ namespace MRmonitorClient.classes
     {
         InfoMachine machine = new InfoMachine();
         ObjectThread objThread = new ObjectThread();
+        Config conf = new Config();// configfile
+        
 
         private static Quobject.SocketIoClientDotNet.Client.Socket socket;
         public bool ConexaoSocket(string url, Main form)
@@ -32,7 +35,8 @@ namespace MRmonitorClient.classes
             {
                 objThread.SetControlPropertyValue(form.lblSvStatus, "text", "Server Status: Conectado!");
                 objThread.SetControlPropertyValue(form.lblSvStatus, "ForeColor", Color.Green);
-                socket.Emit("entrar", "client");
+                socket.Emit("entrar", conf.nome);
+
             });
 
             socket.On(Quobject.SocketIoClientDotNet.Client.Socket.EVENT_DISCONNECT, () =>
@@ -74,11 +78,19 @@ namespace MRmonitorClient.classes
             }
             catch { }
         }
-
+        public void EnviarAtividade(string atividade)
+        {
+            try
+            {
+                socket.Emit("atividade", atividade);
+            }
+            catch { }
+        }
         public void EnviarPrint()
         {
             try
             {
+                
                 ImageConvert imageConvert = new ImageConvert();
                 socket.Emit("print", imageConvert.ObterPrintString64());
             }
