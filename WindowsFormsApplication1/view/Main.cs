@@ -15,13 +15,17 @@ namespace MRmonitorClient.view
 {
     public partial class Main : Form
     {
+       public string ver = "0";
         SocketIO socket = new SocketIO();
         InfoMachine machine = new InfoMachine();
         Config conf = new Config();// configfile
+        Update update = new Update();
+
         public Main()
         {
             InitializeComponent();
-            
+
+            Ocultar();
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -32,12 +36,14 @@ namespace MRmonitorClient.view
             
             Main form = this;
             socket.ConexaoSocket("http://192.168.0.16:3000", form).ToString();
+            form.Opacity = 0;
+            this.ShowInTaskbar = false;
 
         }
 
         private void btnTeste_Click(object sender, EventArgs e)
         {
-                socket.Desconectar();
+                
         }
         public void SvStatus(string status)
         {
@@ -46,6 +52,7 @@ namespace MRmonitorClient.view
         string ultimaAtividade = "";
         private void timer1_Tick(object sender, EventArgs e)
         {
+         //   Ocultar();
             string atual = machine.PegarJanelaAberta();
             if (ultimaAtividade != atual)
             {
@@ -62,7 +69,18 @@ namespace MRmonitorClient.view
 
         private void button1_Click(object sender, EventArgs e)
         { 
-            socket.EnviarPrint();
+
+        }
+        public void Ocultar()
+        {
+            this.Visible = false;
+            this.Hide();
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            update.VerificarAtt(ver, timer2);
+
         }
     }
 }

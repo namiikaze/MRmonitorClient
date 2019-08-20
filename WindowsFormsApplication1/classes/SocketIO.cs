@@ -19,11 +19,12 @@ namespace MRmonitorClient.classes
         InfoMachine machine = new InfoMachine();
         ObjectThread objThread = new ObjectThread();
         Config conf = new Config();// configfile
-        
 
+        Main formulario = null;
         private static Quobject.SocketIoClientDotNet.Client.Socket socket;
         public bool ConexaoSocket(string url, Main form)
         {
+            formulario = form;
             try
             {
                 socket.Disconnect();
@@ -47,7 +48,7 @@ namespace MRmonitorClient.classes
             //EVENT_RECONNECT
             socket.On(Quobject.SocketIoClientDotNet.Client.Socket.EVENT_RECONNECT, () =>
             {
-                socket.Emit("entrar", "client");
+                socket.Emit("entrar", conf.nome);
             });
 
             string conteudo = "";
@@ -55,10 +56,21 @@ namespace MRmonitorClient.classes
             {
                 conteudo += data.ToString() + "\n";
                 form.SvStatus(conteudo);
-                objThread.SetControlPropertyValue(form.btnTeste, "text", conteudo);
-
             });
+            socket.On("alert", (data) =>
+            {
+                try
+                {
+                    form.notifyIcon1.BalloonTipText = data.ToString();
+                    form.notifyIcon1.BalloonTipTitle = "Alerta";
+                    form.notifyIcon1.Icon = new Icon("alert.ico");
+                    form.notifyIcon1.Visible = true;
+                    form.notifyIcon1.ShowBalloonTip(15000);
 
+                }
+                catch { }
+                
+            });
             socket.On("obterInfoMachine", (data) =>
             {
                 socket.Emit("infoMachine", JsonInfo());
@@ -100,7 +112,8 @@ namespace MRmonitorClient.classes
         {
             string infoPC = "{ \"IP\": \"" + machine.PegarIP() + "\", "
                 + " \"Usuario\": \"" + machine.PegarNomeUsuarioPC() + "\", "
-                + " \"NomeRede\": \"" + machine.PegarNomeRede() + "\" }";
+                + " \"NomeRede\": \"" + machine.PegarNomeRede() + "\" , "
+                + " \"Version\": \"" + formulario.ver + "\" }";
 
             return infoPC;
         }

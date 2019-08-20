@@ -25,31 +25,21 @@
         public void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.btnTeste = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblSvStatus = new System.Windows.Forms.Label();
             this.rtbLog = new System.Windows.Forms.RichTextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
-            // 
-            // btnTeste
-            // 
-            this.btnTeste.Location = new System.Drawing.Point(603, 12);
-            this.btnTeste.Name = "btnTeste";
-            this.btnTeste.Size = new System.Drawing.Size(115, 23);
-            this.btnTeste.TabIndex = 0;
-            this.btnTeste.Text = "button1";
-            this.btnTeste.UseVisualStyleBackColor = true;
-            this.btnTeste.Click += new System.EventHandler(this.btnTeste_Click);
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 406);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 123);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(730, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(287, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -65,9 +55,9 @@
             // 
             // rtbLog
             // 
-            this.rtbLog.Location = new System.Drawing.Point(13, 52);
+            this.rtbLog.Location = new System.Drawing.Point(25, 52);
             this.rtbLog.Name = "rtbLog";
-            this.rtbLog.Size = new System.Drawing.Size(705, 351);
+            this.rtbLog.Size = new System.Drawing.Size(160, 56);
             this.rtbLog.TabIndex = 3;
             this.rtbLog.Text = "";
             // 
@@ -94,28 +84,28 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Usuario:";
             // 
-            // button1
+            // notifyIcon1
             // 
-            this.button1.Location = new System.Drawing.Point(468, 11);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Visible = true;
+            // 
+            // timer2
+            // 
+            this.timer2.Enabled = true;
+            this.timer2.Interval = 20000;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(730, 428);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(287, 145);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.rtbLog);
             this.Controls.Add(this.lblSvStatus);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.btnTeste);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Main";
             this.Text = "Main";
             this.Load += new System.EventHandler(this.Main_Load);
@@ -126,7 +116,6 @@
 
         #endregion
 
-        public System.Windows.Forms.Button btnTeste;
         public System.Windows.Forms.StatusStrip statusStrip1;
         public System.Windows.Forms.Label lblSvStatus;
         public System.Windows.Forms.RichTextBox rtbLog;
@@ -134,6 +123,7 @@
         private System.ComponentModel.IContainer components;
         private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
+        public System.Windows.Forms.NotifyIcon notifyIcon1;
+        public System.Windows.Forms.Timer timer2;
     }
 }
