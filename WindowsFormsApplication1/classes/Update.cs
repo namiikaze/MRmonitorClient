@@ -17,7 +17,7 @@ namespace MRmonitorClient.classes
         {
             try
             {
-                if (client.DownloadString("http://127.0.0.1/down/ver.txt") != ver)
+                if (client.DownloadString("http://192.168.0.16/down/ver.txt") != ver)
                 {
                     timer.Enabled = false;
                     Process.Start("Updater.exe");
@@ -25,8 +25,7 @@ namespace MRmonitorClient.classes
                 }
             }
             catch
-            { }
-            
+            { }   
         }
     }
 }

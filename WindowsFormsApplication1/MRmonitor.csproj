@@ -81,7 +81,9 @@
     <Compile Include="classes\ImageConvert.cs" />
     <Compile Include="classes\InfoMachine.cs" />
     <Compile Include="classes\ObjectThread.cs" />
+    <Compile Include="classes\Proxy.cs" />
     <Compile Include="classes\SocketIO.cs" />
+    <Compile Include="classes\TestarConexao.cs" />
     <Compile Include="classes\Update.cs" />
     <Compile Include="configuracoes\Config.Designer.cs">
       <AutoGen>True</AutoGen>

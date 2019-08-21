@@ -15,44 +15,34 @@ namespace MRmonitorClient.view
 {
     public partial class Main : Form
     {
-       public string ver = "0";
+       public string ver = "0.1";
         SocketIO socket = new SocketIO();
         InfoMachine machine = new InfoMachine();
         Config conf = new Config();// configfile
         Update update = new Update();
+        Proxy proxy = new Proxy();
+
+        public bool ativarProxy = true;
 
         public Main()
         {
             InitializeComponent();
-
             Ocultar();
         }
 
         private void Main_Load(object sender, EventArgs e)
         {
-            
-            txtUsuario.Text = conf.nome;
-
-            
+            txtUsuario.Text = conf.nome;   
             Main form = this;
             socket.ConexaoSocket("http://192.168.0.16:3000", form).ToString();
             form.Opacity = 0;
             this.ShowInTaskbar = false;
-
         }
 
-        private void btnTeste_Click(object sender, EventArgs e)
-        {
-                
-        }
-        public void SvStatus(string status)
-        {
-        
-        }
+
         string ultimaAtividade = "";
         private void timer1_Tick(object sender, EventArgs e)
         {
-         //   Ocultar();
             string atual = machine.PegarJanelaAberta();
             if (ultimaAtividade != atual)
             {
@@ -67,10 +57,6 @@ namespace MRmonitorClient.view
             conf.Save();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        { 
-
-        }
         public void Ocultar()
         {
             this.Visible = false;
@@ -81,6 +67,20 @@ namespace MRmonitorClient.view
         {
             update.VerificarAtt(ver, timer2);
 
+            if(ativarProxy){
+                proxy.AutoProxy("192.168.0.30", 3128);
+            }
+        }
+        public void DesativarProxy()
+        {
+            proxy.DesativarProxy();
+            ativarProxy = false;
+        }
+
+        public void AtivarProxy()
+        {
+            proxy.AtivarProxy("192.168.0.30", 3128);
+            ativarProxy = true;
         }
     }
 }

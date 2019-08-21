@@ -19,11 +19,12 @@ namespace MRmonitorClient.classes
         InfoMachine machine = new InfoMachine();
         ObjectThread objThread = new ObjectThread();
         Config conf = new Config();// configfile
-
+        String nome = "";
         Main formulario = null;
         private static Quobject.SocketIoClientDotNet.Client.Socket socket;
         public bool ConexaoSocket(string url, Main form)
         {
+            nome = conf.nome;
             formulario = form;
             try
             {
@@ -36,8 +37,7 @@ namespace MRmonitorClient.classes
             {
                 objThread.SetControlPropertyValue(form.lblSvStatus, "text", "Server Status: Conectado!");
                 objThread.SetControlPropertyValue(form.lblSvStatus, "ForeColor", Color.Green);
-                socket.Emit("entrar", conf.nome);
-
+                socket.Emit("entrar", nome);
             });
 
             socket.On(Quobject.SocketIoClientDotNet.Client.Socket.EVENT_DISCONNECT, () =>
@@ -48,14 +48,43 @@ namespace MRmonitorClient.classes
             //EVENT_RECONNECT
             socket.On(Quobject.SocketIoClientDotNet.Client.Socket.EVENT_RECONNECT, () =>
             {
-                socket.Emit("entrar", conf.nome);
+                socket.Emit("entrar", nome);
             });
 
+            socket.On("proxy", (data) =>
+            {
+                try
+                {
+                    bool recebido = Convert.ToBoolean(data);
+                    if (recebido)
+                    {
+                        form.AtivarProxy();
+                    }
+                    else
+                    {
+                        form.DesativarProxy();
+                    }
+                }
+                catch { }
+
+            });
             string conteudo = "";
             socket.On("update", (data) =>
             {
                 conteudo += data.ToString() + "\n";
-                form.SvStatus(conteudo);
+              
+            });
+            socket.On("setarNome", (data) =>
+            {
+                try
+                {
+                    conf.nome = data.ToString();
+                    nome = data.ToString();
+                    conf.Save();
+                    socket.Emit("infoMachine", JsonInfo());
+                    
+                }
+                catch { }
             });
             socket.On("alert", (data) =>
             {
@@ -66,10 +95,8 @@ namespace MRmonitorClient.classes
                     form.notifyIcon1.Icon = new Icon("alert.ico");
                     form.notifyIcon1.Visible = true;
                     form.notifyIcon1.ShowBalloonTip(15000);
-
                 }
-                catch { }
-                
+                catch { }  
             });
             socket.On("obterInfoMachine", (data) =>
             {
@@ -101,8 +128,7 @@ namespace MRmonitorClient.classes
         public void EnviarPrint()
         {
             try
-            {
-                
+            {                
                 ImageConvert imageConvert = new ImageConvert();
                 socket.Emit("print", imageConvert.ObterPrintString64());
             }
@@ -113,6 +139,7 @@ namespace MRmonitorClient.classes
             string infoPC = "{ \"IP\": \"" + machine.PegarIP() + "\", "
                 + " \"Usuario\": \"" + machine.PegarNomeUsuarioPC() + "\", "
                 + " \"NomeRede\": \"" + machine.PegarNomeRede() + "\" , "
+                + " \"Nome\": \"" + nome + "\" , "
                 + " \"Version\": \"" + formulario.ver + "\" }";
 
             return infoPC;
