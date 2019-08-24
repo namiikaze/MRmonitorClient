@@ -14,6 +14,7 @@ namespace MRmonitorClient.classes
     class ObjectThread
     {
         delegate void SetControlValueCallback(Control oControl, string propName, object propValue);
+        
         public void SetControlPropertyValue(Control oControl, string propName, object propValue)
         {
             if (oControl.InvokeRequired)
@@ -30,9 +31,11 @@ namespace MRmonitorClient.classes
                     if (p.Name.ToUpper() == propName.ToUpper())
                     {
                         p.SetValue(oControl, propValue, null);
+                     
                     }
                 }
             }
         }
+       
     }
 }

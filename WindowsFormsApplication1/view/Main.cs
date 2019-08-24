@@ -16,13 +16,14 @@ namespace MRmonitorClient.view
     public partial class Main : Form
     {
        public string ver = "0.1";
-        SocketIO socket = new SocketIO();
+       public bool ativarProxy = true;
+        SocketIO socketIO = new SocketIO();
         InfoMachine machine = new InfoMachine();
         Config conf = new Config();// configfile
         Update update = new Update();
         Proxy proxy = new Proxy();
 
-        public bool ativarProxy = true;
+        
 
         public Main()
         {
@@ -34,9 +35,12 @@ namespace MRmonitorClient.view
         {
             txtUsuario.Text = conf.nome;   
             Main form = this;
-            socket.ConexaoSocket("http://192.168.0.16:3000", form).ToString();
+            socketIO.ConexaoSocket("http://192.168.0.16:3000", form).ToString();
             form.Opacity = 0;
             this.ShowInTaskbar = false;
+
+            Chat chat = new Chat(socketIO.GetSocket());
+            chat.Show();
         }
 
 
@@ -47,7 +51,7 @@ namespace MRmonitorClient.view
             if (ultimaAtividade != atual)
             {
                 ultimaAtividade = atual;
-                socket.EnviarAtividade(ultimaAtividade);  
+                socketIO.EnviarAtividade(ultimaAtividade);  
             }
         }
 
@@ -68,7 +72,7 @@ namespace MRmonitorClient.view
             update.VerificarAtt(ver, timer2);
 
             if(ativarProxy){
-                proxy.AutoProxy("192.168.0.30", 3128);
+          //      proxy.AutoProxy("192.168.0.30", 3128);
             }
         }
         public void DesativarProxy()

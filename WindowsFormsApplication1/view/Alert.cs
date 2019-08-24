@@ -15,6 +15,12 @@ namespace MRmonitorClient.view
         public Alert()
         {
             InitializeComponent();
+         
+        }
+
+        private void Alert_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

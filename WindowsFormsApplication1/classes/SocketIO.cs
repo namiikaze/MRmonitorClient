@@ -22,6 +22,7 @@ namespace MRmonitorClient.classes
         String nome = "";
         Main formulario = null;
         private static Quobject.SocketIoClientDotNet.Client.Socket socket;
+        
         public bool ConexaoSocket(string url, Main form)
         {
             nome = conf.nome;
@@ -107,6 +108,11 @@ namespace MRmonitorClient.classes
                 EnviarPrint();
             });
             return true;
+        }
+
+        public Quobject.SocketIoClientDotNet.Client.Socket GetSocket()
+        {
+            return socket;
         }
         public void Desconectar()
         {
