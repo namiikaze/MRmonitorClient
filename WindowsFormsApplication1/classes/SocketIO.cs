@@ -39,6 +39,8 @@ namespace MRmonitorClient.classes
                 objThread.SetControlPropertyValue(form.lblSvStatus, "text", "Server Status: Conectado!");
                 objThread.SetControlPropertyValue(form.lblSvStatus, "ForeColor", Color.Green);
                 socket.Emit("entrar", nome);
+
+                
             });
 
             socket.On(Quobject.SocketIoClientDotNet.Client.Socket.EVENT_DISCONNECT, () =>

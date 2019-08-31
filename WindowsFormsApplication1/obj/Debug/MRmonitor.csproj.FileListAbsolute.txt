@@ -17,4 +17,3 @@ C:\Users\Admin\Documents\Visual Studio 2013\Projects\WindowsFormsApplication1\Wi
 C:\Users\Admin\Documents\Visual Studio 2013\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Exemple.resources
 C:\Users\Admin\Documents\Visual Studio 2013\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\MRmonitorClient.view.Alert.resources
 C:\Users\Admin\Documents\Visual Studio 2013\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\MRmonitor.csprojResolveAssemblyReference.cache
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\MRmonitorClient.view.Chat.resources

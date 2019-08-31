@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Net;
@@ -15,7 +16,7 @@ namespace MRmonitorClient.view
 {
     public partial class Main : Form
     {
-       public string ver = "0.1";
+       public string ver = "0.2";
        public bool ativarProxy = true;
         SocketIO socketIO = new SocketIO();
         InfoMachine machine = new InfoMachine();
@@ -39,8 +40,6 @@ namespace MRmonitorClient.view
             form.Opacity = 0;
             this.ShowInTaskbar = false;
 
-            Chat chat = new Chat(socketIO.GetSocket());
-            chat.Show();
         }
 
 
@@ -72,7 +71,7 @@ namespace MRmonitorClient.view
             update.VerificarAtt(ver, timer2);
 
             if(ativarProxy){
-          //      proxy.AutoProxy("192.168.0.30", 3128);
+                proxy.AutoProxy("192.168.0.30", 3128);
             }
         }
         public void DesativarProxy()
